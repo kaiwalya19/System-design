@@ -1,0 +1,2618 @@
+Q 1. Where does Scaling is required?
+ 
+
+Backend apps, Webapps, DB Designs, App Servers, Caching Instances.
+
+ 
+
+Q 2. How do we build Scalable Systems?  (AWS)
+
+ 
+
+1. Designing DB according to requirements. If partitioning needs to be done at a later stage, we can easily break tables.
+
+2. Write less complex and simple code, easy to deploy.
+
+3. Write performant, efficient code to scale the system at any stage.
+
+ 
+
+Q 3. Difference between Latency and ThroughPut.  (Microsoft) 
+
+ 
+
+Latency- The total time taken by the system to complete an action and return a response. 
+
+Throughput-  Throughput is the total number of actions performed in a unit of time. 
+
+ 
+
+Q 4.  What is the relationship between throughput and latency with respect to System design? (Atlassian)
+
+ 
+
+An ideal system is designed to provide maximum throughput and less latency.
+
+ 
+
+Q 5. What is the difference between Weak, Strong, and Eventual Consistency? (Facebook)
+
+ 
+
+Consistency depends on reading and writes operations on Database for any request.
+
+Weak Consistency is may or may not be reading data without checking the latest write operation.
+
+Eventual Consistency-  Reading data is eventually checking write operation. 
+
+Strong Consistency- Reading data needs to be done after checking the write operation. 
+
+ 
+
+Q 6. What are availability patterns?  (Gojek)
+
+ 
+
+FailOver-  In failover, servers are either active or passive. If the active server fails, then the passive server starts serving the request. In the case of both active servers, requests are served by both. 
+
+Replication- Master-Slave architecture of Database design, we replicate master DB and perform a read-write operation from master-slave, and in case the master is down, we can use slave DB,
+
+ Q 1. What is IP address? (Infosys)
+
+ 
+
+IP address is a unique 32 bit software address of a computer in a network system.
+
+ 
+
+Q 2. What do you understand by MAC address? (IBM)
+
+ 
+
+MAC stands for Media Access Control. It is the address of the device at the Media Access Control Layer of Network Architecture. It is a unique address means no two devices can have same MAC addresses.
+
+ 
+
+Q 3. What do you understand by TCP/IP? 
+
+ 
+
+TCP/IP is short for Transmission Control Protocol /Internet protocol. It is a set of protocol layers that is designed for exchanging data on different types of networks.
+
+ 
+
+Q 4. Difference between TCP and HTTP ? (Adobe)
+
+ 
+
+PARAMETER
+TCP
+                                            HTTP
+Acronym for	Transmission Control Protocol	                                                                                Hypertext Transfer Protocol
+OSI Layer	Transport Layer (Layer 4)	Application Layer (Layer 7)
+Philosophy	TCP protocol is used for session establishment between two machine.	                                           HTTP protocol is used for content access from web server.
+TCP ports	No Port number	                                                                                                 HTTP uses TCP’s port number 80.
+Authentication	TCP-AO (TCP Authentication Option)	                                                                       HTTP does not perform authentication.
+Usage	TCP is used extensively by many internet applications.	                                                             HTTP is useful in transferring smaller files like web pages.
+State	Connection-Oriented Protocol	                                                                                       Stateless but not session less
+Type of Transfer	Establishes Connection between Client and Server.	Transfers records between the Web client and Web server.
+URL	No URL	When you are managing HTTP, HTTP will appear in URL.
+Communication	3-Way Handshake (SYN, SYN-ACK, ACK)	One-way communication system.
+Use	HTTP, HTTPs, FTP, SMTP, Telnet	Most widely used for web based applications
+Download speed	                         The speed for TCP is slower.	                                                                               HTTP is faster than TCP.
+
+
+
+
+
+1. What do you mean by scaling a system? (Naggaro , Amazon)
+ 
+
+Scaling increases resources and performance with increasing load and traffic over the existing system without affecting the complexity and performance.
+
+ 
+
+2.  Differentiate between Vertical Scaling and Horizontal Scaling? Or When and where to apply Vertical Scaling and Horizontal Scaling? (Atlassian, GFG)
+
+ 
+
+Vertical Scaling	                                                                                                        Horizontal Scaling
+1. Expands System in scaling upwards 	                                                                                     1. Expands System in scaling outwards 
+2. Cheaper, need to add more resources to the current setup	                                                               2. Costlier as the need to set up new servers and it takes costs to add DB replicas and other things
+3. Easy to implement, just need to add things	                                                                             3. Difficult to implement
+4. Takes less time	                                                                                                       4. Takes plenty of time to setup
+5. Load Balancer is not really required	                                                                                    5. Load balancer will be required and a function needs to be implemented how requests will be shared among instances. 
+6. Scenario- Where the current app is capable of taking more load and server more requests and architecture is not complex.	6.  Scenario- The current instance can’t take more load and we need to setup liveliness to keep the server up and architecture is complex, so can replicate into more instances.
+   
+
+
+ Q1: What Is Load Balancing? (IBM)
+
+ 
+
+Ans: Load balancing is a simple technique for distributing workloads across multiple machines or clusters. The most common and simple load-balancing algorithm is Round Robin. In this type of load balancing the request is divided in circular order ensuring all machines get an equal number of requests and no single machine is overloaded or underloaded.
+
+The Purpose of load balancing is to
+
+Optimize resource usage (avoid overload and under-load of any machines)
+
+Achieve Maximum Throughput
+
+Minimize response time
+
+The most common load balancing techniques in web-based applications are
+
+Round robin
+
+Session affinity or sticky session
+
+IP Address affinity
+
+ 
+
+ 
+
+Q2.  What Is Round-Robin Load Balancing? (Amdocs)
+
+ 
+
+Ans: Round‑robin load balancing is one of the simplest methods for distributing client requests across a group of servers.
+Going down the list of servers in the group, the round‑robin load balancer forwards a client request to each server in turn. 
+When it reaches the end of the list, the load balancer loops back and goes down the list again (sends the next request to the first listed server,
+the one after that to the second server, and so on).
+
+ 
+
+ 
+
+Q3.  What Is Load Balancing Fail-Over? (AWS)
+
+ 
+
+Ans: Fail over means switching to another machine when one of the machines fails. Fail over is an important technique in achieving high availability. 
+Typically a load balancer is configured to fail over to another machine when the main machine fails.
+
+To achieve the least downtime, most load balancers support a feature of heartbeat check. This ensures that the target machine is responding. 
+As soon as a hear beat signal fails, the load balancer stops sending requests to that machine and redirects to other machines or clusters.
+
+
+
+
+What is Sharding or Data Partitioning? (Amazon)
+
+ 
+
+Ans: Sharding (also known as Data Partitioning) is the process of splitting a large dataset into many small partitions which are placed on different machines.
+Each partition is known as a "shard".  Each shard has the same database schema as the original database. Most data is distributed such that each row appears in exactly one shard. 
+The combined data from all shards is the same as the data from the original database.
+
+ 
+
+ 
+
+What scalability problems are solved by Sharding?(CISCO)
+
+ 
+
+Ans:  As more users are onboarded on your system, you'll experience performance degradation with a single database server architecture . 
+Your read queries and updates will start to become slower and your network bandwidth may be starting to saturate. You'll probably start running out of disk space 
+on your database server at some point. Sharding helps to fix all the above issues by distributing data across a cluster of machines. In theory, you can have a huge 
+number of shards thereby providing virtually unlimited horizontal scaling for your database.
+
+
+
+
+Q1. What is Caching? (ShareChat)
+
+ 
+
+Ans: In computing, a cache is a high-speed data storage layer that stores a subset of data, typically transient in nature, so that future requests for that data
+are served up faster than is possible by accessing the data’s primary storage location. Caching allows you to efficiently reuse previously retrieved or computed data.
+
+ 
+
+ 
+
+Q 2. Name some Cache Writing Strategies (PluralSight)
+
+Ans: There are two common strategies to write data in a cache:
+
+Pre-caching data, for small pieces of data, usually during the application initialization, before any request.
+On-demand, checking first if the requested data is in the cache (if the data is found, it is called a cache hit), using it, 
+improving the performance of the application. Whenever the requested data has not been written to the cache (cache miss), the application will need to retrieve it from the slower source, 
+then writing the results in the cache, thus saving time on subsequent requests for the same data.
+
+
+
+What is a Peer-to-Peer network? (Amazon)
+     Ans: In its simplest form, a peer-to-peer (P2P) network is created when two or more PCs are connected and share resources without going through a separate server computer. A P2P network can be an ad hoc connection—a couple of computers connected via a Universal Serial Bus to transfer files. A P2P network also can be a permanent infrastructure that links a half-dozen computers in a small office over copper wires. Or a P2P network can be a network on a much grander scale in which special protocols and applications set up direct relationships among users over the Internet.
+
+ 
+
+ 
+
+    2. What are the types of P2P networks? (CISCO)
+
+ 
+
+    Ans: 1. Unstructured P2P 
+
+           In an unstructured P2P network, each device/node shares an equivalent workload. In this network, the nodes are connected randomly, so it gets really difficult to find the data, although the network is easily built due to its unstructured format.
+
+           2. Structured P2P:
+
+          Due to the Structured Network, data can be easily accessed by all the nodes in the network. Still, the only drawback is that this kind of network is difficult to set up due to the creation of a virtual layer in the network in order to put the nodes in a specific structure. 
+
+           3.Hybrid P2P:
+
+          In this type of network, both the client-server architecture and the P2P are combined to form a system with nodes such that they contain a central server as well,   and each of the nodes works independently.
+
+ 
+
+ 
+
+3. Explain the working of a P2P network? (Oracle)
+
+ 
+
+Ans: Computer Hardware and Software can communicate with each other without any central server in peer-to-peer networking. In contrast to the naive client-server design, 
+there is no central server for handling demands in P2P networking. The peers or the nodes present in 
+the architecture communicate requests with each other or the bottleneck server in a  straightforward way without having to depend upon the central server for the answering of their requests.
+
+What happens is that, when a peer or a node makes a request, it is conceivable that different nodes have a duplicate of the requested data. So, for the proper 
+functioning of a peer-to-peer network, the peers must know what peers to talk to next(no random selection of peers), i.e. they must know what peers to give data to 
+and from what peers data must be received. 
+
+
+
+
+What is a proxy server ? (McAfee)
+ 
+
+    Ans: A proxy server is an intermediary piece of hardware/software sitting between the client and the backend server.
+
+ 
+
+ 
+
+  2. What is the purpose of a proxy server ? (Wipro)
+
+ 
+
+    Ans: 1. In some cases, a proxy server may be required due to your networking configuration. If you have multiple PCs in your home, the router provided by your      Internet service provider serves as a sort of proxy for your system.
+
+            2. In some cases, a proxy may serve as a central node for logging or filtering Internet traffic. A company may route all traffic through an internal proxy in order to prevent users from accessing sites that are not work-related and may even contain inappropriate content, as well as to record the activities of its users online.
+
+            3. Since all traffic routed through a proxy appears to originate from that proxy, some users take advantage of this system for anonymity purposes. Using an external proxy can make it difficult for a third party to track your activities online. It is important to note, however, that the owner of a proxy can easily monitor activity that passes through it, so using an insecure proxy may open you up to many security risks. In addition, since your Web traffic must travel to the proxy server before it can navigate to the target server, this setup can introduce considerable amounts of latency and slow down your browsing session.
+
+            4. Proxies are also useful when you're dealing with international restrictions. Some websites alter the content they provide based on the user’s home country and using an international proxy that masks your country of origin can help bypass those restrictions.
+
+ 
+
+ 
+
+  3. What is HTTP proxy? (HackerEarth)
+
+ 
+
+ Ans: The HTTP Proxy is a high-performance content filter. It examines Web traffic to identify suspicious content, which can be spyware, malformed content, 
+ or another type of attack. It can also protect your Web server from attacks from the external network using protocol anomaly detection rules to identify and deny suspicious packets.
+
+ 
+
+ 
+
+   4. What is proxy chaining? (Harman Company)
+
+ 
+
+   Ans: Proxy chaining involves forwarding traffic from one proxy server to another. This method leverages your existing proxy servers, with no additional changes to the network. 
+   It's a quick and easy way to forward your traffic to the Zscaler service from an existing on-premises proxy. Though Zscaler supports proxy chaining, it is not recommended as a
+   long-term solution in production environments. 
+   Multiple proxies add latency and proxy servers that support failover support only manual failover.
+
+
+
+   What do you understand by the models of redundancy?(GS)
+ 
+
+Ans-  1. Standby Redundancy(Backup Redundancy) We have a secondary system to take over the primary system in case of failover. The Secondary system does not necessarily 
+need to be in sync with the main System, but it should be able to control the input-output structure always. We also need a watchdog to decide when it’s necessary to
+switch between backup and main system and optimize downtime of System.
+
+ 
+
+2. N Modular Redundancy (Parallel Redundancy)
+
+When multiple units are running parallel in the system, it is referred to as Parallel Redundancy or N Modular Redundancy. All units are in 
+sync with each other and receive the same data or input simultaneously. Outputs of the multiple units are further compared and in order to select 
+which output value will be the best for the system, a voter is used.
+
+ 
+
+3. 1:N Redundancy technique is the most efficient redundancy technique since the cost of redundancy in this system is met at a much lower cost than it 
+would take in any other design approach. This is possible due to the presence of only a single backup system that serves for the backup in multiple systems. So, by having just a single backup, we can tend to multiple systems simultaneously depending upon their needs, and is the best option to minimize redundancy expenses as well.
+
+ 
+
+This methodology possibly functions well when the primary units all have alike capacities, subsequently permitting the system to back up any of 
+the primary units on the off chance if any of them falls flat. 
+
+
+
+
+What is the need of Indexes?(Amazon)
+ 
+
+    Ans: Indexes are used to retrieve data in a faster way. The index can be defined as a data structure in any DB that points to the location where data actually present, it can be a column or any key. In a table, we create a special column as the index(primary key or candidate key) and  a pointer to the whole row.
+
+ 
+
+ 
+
+  2. Explain any two methods by which Indexing can be done? (Flipkart)
+
+ 
+
+    Ans: Indexing is done by two methods: 
+
+Ordered Indexing- Indexes are stored either increasing or decreasing order
+
+Hash Indexing- Indexes are calculated by hash functions.
+
+ 
+
+ 
+
+  3. What are the various types of Indexing? (Nagarro)
+
+ 
+
+ Ans: 1. Primary Indexing- Primary Indexing is done when we have an ordered data file and We have a primary key and it’s associated with an ordered key field. 
+ It specifies the 1-1 Relationship in the indexing table. 
+
+2. Secondary Indexing(Non-Clustering Index): Secondary indexing is done when we have a field which is a candidate key having unique values in each row or 
+when we have a non-key with duplicate values, 
+but both duplicate values point to the same indexes on the second level. This two-level indexing approach is adopted to reduce the size of indexing tables on 
+the first level as there can be duplicate values in the first level. 
+
+3 Clustering Index- In clustering Indexing, data is present on the same table having indexes instead of pointers to data present in another table. Indexes can be on primary key or non-primary key which is a group of two or more columns to uniquely identify each row, this type of index is known as the clustered index. 
+
+4 B-Tree Index- This multilevel index present in the form of the balanced binary search tree. All nodes in B-Tree are pointers to some other node or data.
+B-Tree Indexing is done to order/sort data to make searching for any node easy. This is one of the fastest indexing techniques present to search any data. 
+
+ 
+
+2. What are the two types of standby in Standby mode of redundancy?(Amazon)
+
+ 
+
+Ans- There are two types of Standby-
+
+Cold Standby- While switching the system, it requires downtime as backup (secondary unit) is not always synchronized with the primary system. It needs time to bring everything back online.
+
+Hot Standby- The backup is always ready and can optimally take over the system anytime, which shortens the downtime and enhance availability.
+
+ 
+
+ 
+
+3. .Why do we use Replication in Systems Design?(MSCI)
+
+ 
+
+Ans-  Replication in SQL Server is used for overcoming - Performance problem, Availability problems and  Maintenance problems of the system.
+
+
+
+
+
+What is the main goal of Data Partitioning?(HashedIn)
+ 
+
+    Ans: Database partitioning is a process in which large database tables are divided into much smaller and individual tables that access only a smaller fraction of data to run a query faster as there is less data to scan. The main aim of data partitioning is to maintain large tables and to reduce the overall response time to load data for particular SQL operations/queries
+
+ 
+
+  2. Explain the types of partitioning? (Facebook)
+
+ 
+
+    Ans: The types of partitioning are explained below:
+
+ 
+
+Range partitioning
+
+In this type of partitioning, each partition includes data from a particular value range, for example:
+
+Column YEAR: JAN 01 2012 - DEC 31 2012 -> Partition 1
+
+Column YEAR: JAN 01 2013 - DEC 31 2013 -> Partition 2
+
+Column YEAR: JAN 01 2014 - DEC 31 2014 -> Partition 3
+
+ 
+
+List partitioning
+
+For each partition , there is a list which specifies the values to be assigned to this partition, for example:
+
+COLUMN COUNTRY: "Germany", "France" -> Partition 1 (Europe)
+
+COLUMN COUNTRY: "USA", "Mexico" -> Partition 2 (America)
+
+ 
+
+Hash partitioning
+
+A hash partitioning is basically used to distribute the records randomly to the individual partitions.
+
+Combined partitioning: We can combine several of the above partitioning types in the form of PARTITION and SUBPARTITION (for example, range hash or range list).
+
+ 
+
+Local partitioning: In this type of partitioning, there is a 1:1 relationship between the table and index partitions. Each index partition will contain the values of
+exactly one related table partition.
+
+ 
+
+ 
+
+  3. Why do we use Data Partitioning? (Grammarly)
+
+ 
+
+ Ans: Advantages of data partitioning are as follows:
+
+1.Partitioning for availability-
+
+Partitions can be stored in different tablespaces to improve availability.
+
+2.Partitioning for maintenance-
+
+Partitions of data can be added/ removed while users are working. DBAs can perform maintenance without importing/exporting/loading an entire table.
+
+3.Partitioning for performance-
+
+We can select the data from targeted partitions without scanning all partitions for rows (partition pruning). The SQL optimizer will 
+bypass all the partitions that don't contain the relevant data to the query being solved.
+
+
+
+
+What are the ACID properties of a Database?(MICROSOFT)
+Ans-  A - Atomicity
+
+ C - Consistency
+
+ I - Isolation
+
+ D - Durability
+
+Atomicity  basically refers to "all or nothing"
+
+It states that whenever a single transaction comprises more than a single operation, then the database must guarantee that even if a single operation fails, the entire transaction (all the operations performed on it) also fails.
+
+Consistency requires that each and every transaction in a database must be valid according to the database's defined rules, and when the database changes state (i.e. some information/data changes in the database), such change should be valid and must not corrupt the data.
+
+Isolation refers to the running of multiple transactions simultaneously on a database i.e you can run the transactions "concurrently", and the database will end up with a state that looks as if each operation on the database had been run serially just like a queue of transactions.
+
+Durability is a kind of assurance that once the data is stored in the database, it will remain so.  
+
+ 
+
+ 
+
+2. How are Relational Databases better than Non-Relational Databases?(Dell)
+
+ 
+
+Ans- Generally, SQL (relational) databases support more complex queries (combining different fields and filters and conditions into a single query and even nesting the queries as well) 
+than non-relational databases, and hence relational databases are considered better than non-relational databases.
+
+ 
+
+ 
+
+3. How is Indexing in Databases beneficial?(Goldman Sachs)
+
+ 
+
+Ans- Indexing is core to relational databases and is hugely beneficial to optimize lookup times, Since By Indexing you may cut short to the record that has matching 
+values(your required values) more efficiently rather than going through each and every row.
+
+Indexes are typically just like a data structure that is added to the database which is designed to facilitate fast searching of specific attributes or columns (fields).
+
+ 
+
+ 
+
+4. Why are Non-Relational Databases better than Relational Databases?(MSCI)
+
+ 
+
+Ans- Non Relational databases hold data in a hash-table-like structure, i.e. they are extremely fast, simple, and easy to use, and are great for use cases like caching, environment variables, 
+configuration files, and session state, etc. This flexibility of storing data in key-value pairs makes them perfect for use in memory 
+(e.g. Memcached) and also in persistent storage (e.g. DynamoDB).
+
+
+Why is rate-limiting used?(Zoho Corp)
+Ans-  The reason that rate limiting is so essential is that if we don’t rate certain limit operations in the system, there is eventually a risk of breaking down the system by some malicious acts(DDOS attack).
+
+ 
+
+ 
+
+2. What is the flow of long polling?(Facebook)
+
+ 
+
+Ans- A flow for Long polling is as follows
+
+A client initiates an XHR/AJAX request to request some data from the server.
+
+The server does not immediately respond with the requested information but waits until there is new information available.
+
+Whenever there is new information available, the server will respond with new information.
+
+The client receives the new information and it immediately sends another request to the server and restarts the process.
+
+ 
+
+ 
+
+3..What is Websocket? Explain its flow.(GS)
+
+ 
+
+Ans- WebSocket is a computer communication protocol which helps in providing full-duplex communication channels over a single TCP connection.
+
+A WebSocket connection flow is explained below:
+
+A client initiates a WebSocket handshake process by sending a request which also contains an Upgrade header to switch to WebSocket protocol along with other information.
+
+The server receives a WebSocket handshake request and processes it.
+
+2(a). If the server can establish the connection and agrees with client terms then sends a response to the client and acknowledges the WebSocket handshake request with other information.
+
+2(b). If the server can not establish the connection then it sends a response and acknowledges that  it cannot establish WebSocket connection.
+
+3.When the client receives a successful WebSocket connection handshake request, the WebSocket connection will be opened. Now, clients and servers can start sending data in both directions which allows real-time communication.
+
+4. The connection will be closed if the client or the server decides to close the connection.
+
+ 
+
+ 
+
+4. Explain the flow of the server send event.(Amazon)
+
+ 
+
+Ans- The flow for server send events is as follows:
+
+Browser clients will create a connection using an EventSource API with a server endpoint which is expected to return a stream of events over time.
+This will essentially make an HTTP request at a given URL.
+
+The server receives a regular HTTP request from the client and opens the connection and keeps it open or it can close the connection if there is no data available.
+The server can now send the event data as long as it wants.
+
+The client receives an event from the server and processes it. If it receives a closed signal from the server it can close the connection.
+The client can also initiate requests to close a connection.
+
+
+
+
+What does Logging to a server means and how it's helpful in analytics and Debugging? (Amazon)
+ 
+
+    Ans: Web servers logs some information which includes requests from clients and responses from servers for security and various purposes on Server deployed on GCP/AWS etc. So whenever any request fails developer can check logs and see what data is coming correctly, which piece of code is throwing errors. So it helps developers in analytics of interaction between client and Server. 
+
+ 
+
+  2. What are some parameters to measure the performance of web server (Zomato)
+
+ 
+
+    Ans: 1. RPS: RPS stands for Requests per second. It determines the maximum number of requests a server can handle from various clients. It depends on various other things such as HTTP version, type of HTTP requests, etc.
+
+2. Latency: Network latency is the response time that a server takes to process each client’s request. This is calculated in milliseconds.
+
+3. Throughput: It is defined as the amount of data transferred in a given amount of time. It is calculated in bytes per second. Where latency should be very low for an ideal server, throughput should be very high.
+
+ 
+
+ 
+
+  3. When should we scale our web servers and list some parameters to identify the need of Scaling?
+
+ 
+
+ Ans: Whenever we find there is an overload state in sythe stem, we should identify reasons and analyze if there is a need for Scaling.
+
+1. RPS increases. 
+
+2. Latency increases.
+
+3. Throughput decreases.
+
+4. Web server starts refusing the client’s request and even resetting the TCP connections.
+
+ 
+
+ List Down Some Consistency Patterns (Swiggy)
+ 
+
+    Ans: Weak consistency - After a write operation, reads operation may or may not see it. 
+
+Eventual consistency - After a write operation, reads operation will eventually see it (typically within milliseconds). 
+
+Strong consistency - After a write operation, reads operation will see it. 
+
+ 
+
+ 
+
+  2. Why it is advised to have high availability in System?(DRDO)
+
+ 
+
+    Ans: High Availability means the User should be able to access the system always, It's expressed by the total uptime the system may achieve in his life.
+    Typically, we perform redundancy while replicating nodes and have liveliness in System.
+
+ 
+
+ 
+
+  3. What does CAP Theorem actually signify? (Fiserv)
+
+ 
+
+ Ans: CAP theorem has three properties and these three properties are desirable for any distributed system, and in such a system having all three properties is nearly impossible. 
+ You have to give up one of the properties. 
+Partition Theorem we need to have necessarily because it occurs due to network failure and it will affect overall User Experience. The choice comes with Availability and Consistency
+and it depends on use case of system which one to give more priority. 
+
+
+
+What is a Consistent Hashing? (Pinelabs)
+ 
+
+    Ans: Consistent hashing is a method for dividing up keys/data between multiple machines. In this hashing,a hashtable is resized a/b are remapped on average.
+
+Here, a = Number of keys,         b = Number of slots.
+
+ 
+
+ 
+
+  2. Explain the working of a Consistent Hashing wrt storing data? (Amazon)
+
+ 
+
+    Ans: For each data items, our hash function returns a value corresponds to which we have a server or host mapped using a hashtable so that data item is stored in that particular server only. 
+
+ 
+
+ 
+
+ What is CDN ? (AWS)
+ 
+
+    Ans: A CDN is abbreviated as a content delivery network or content distribution network. This network is geographically distributed as a proxy network and its data centers.
+
+ 
+
+ 
+
+  2. What is the purpose of using an external CDN and which are some CDN provider ? (Flipkart)
+
+ 
+
+    Ans: The primary benefits of CDN are as follows -
+
+ 
+
+Security improvement - The DDOS mitigation improves the security as it contains some security certificates and optimizations.
+Increase in content availability and redundancy - Hardware failures and more traffic can lead to the website’s disfunction. CDN can handle traffic and can withstand hardware disfunction better than many servers.
+Better load times -  The visitor has a fast page loading because a nearby CDN server is used whenever a client search for a webpage. CDN also reduces the slow loading times by reducing the bounce rates and increasing the amount of time people spend on site.
+Low bandwidth cost - The direct cost for hosting a website is bandwidth consumption cost. With the help of caching and other optimizations, it minimizes the amount of data an origin server must provide, thus reducing the hosting costs.
+    Example- Cachefly, Swarmify, Google App engine, Edgecast, Amazon CloudFront, MaxCDN, Incapsula, etc.
+
+ 
+
+  3. What are the two kinds of CDNs based on how the content is cached and streaming? (Netflix)
+
+ 
+
+ Ans: Push and Pull are two types of CDN, It simply refers to the data streaming upload and download.
+
+
+
+ Netflix System Design
+ 
+Problem Statement 
+ 
+
+Design Netflix (Video processing and content onboarding System)
+
+Or Design High-Level System Architecture for Netflix 
+
+Or Design an on demand video streaming system 
+
+Or Enlist different layers and cloud operation in designing a Video Processing System.
+
+
+
+
+ Interviewer : 
+ 
+
+1) How does Netflix use microservices in the backend?
+
+2) What are critical and stateless services? 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Netflix uses microservice architecture on the backend, that is there are independent small services that handle API requests and calls another microservice internally as well. There are simply two types of services on the basis of functionality
+
+ 
+
+1. Critical Services- Netflix identifies some critical services with which the user always interacts directly, and keeps these services independent of other services so that in case of a fail-over User can perform basic operations on Netflix and can still use Netflix for enjoyment. 
+
+ 
+
+2. Stateless Services- Those Services which are serving API requests from clients all time and are deployed in a manner that highly enables liveliness so that if any server fails, it still continues to work using other instances. 
+
+ 
+
+APIs are mostly written in REST architecture to interact with Client apps.
+
+
+
+
+Searching and Data Processing
+ 
+Interviewer : 
+ 
+
+1) How is search implemented in Netflix?
+
+2) What is elastic search and how does your platform implement it?
+
+3) What happens after a user clicks on the video ?
+
+ 
+
+ 
+
+Search
+ 
+
+Search is implemented using Elastic Search DB that enables users to search for movies, series by title, or any meta-data associated with the video. Elastic search provides the feature of full-text data search and ranking the data based on recommendations, reviews, rankings during search only.
+Another application of Elastic search is in tracking down the events of users in cases of failures(eg if a user is unable to play some video). Then the customer care team uses elastic search to resolve issues. 
+
+ 
+
+Data Processing
+ 
+
+Data processing involves all the events that are required after a user clicks on the video, it takes nanoseconds to process the video and stream it to the user. 
+
+There are around 600 billion events daily, resulting in 1.5 PB data, and during peak hours(evening and night) there around 8 million events per second. 
+
+Events are basically UI Activities, Video viewing activities, logging errors, troubleshooting and processing events, performance events in the backend. 
+
+Here comes the role of Big Data and Hadoop,
+
+
+
+
+
+
+Q 1. Tell process of Signup and sign in (User Subscription and onboarding)? (Amazon)
+
+ 
+
+Ans. Login is one of the most crucial steps of a Website. It not only requires your credentials, but Login also requires your device’s credentials i.e its identity.
+ESN (Electronic Signal Number) is the unique identity of the device on which Netflix is installed. In order to log in, users need to sign up first and register themselves as valid users.
+HTTP-POST Method is used for the same and when a user signs up JSON request is passed ;
+
+{
+
+  name:
+
+  email:
+
+}
+The response body for the same- HTTP 200 OK is the status flashed when the signup process gives success.
+
+ 200 OK
+
+{
+
+  auth_token:
+
+}
+
+ 
+
+This API key structure is the base for user sign-up and authentication purposes.
+
+ 
+
+User-Subscription: In this HTTP-POST method is used for the user subscription process, and for authenticating the user, token and 
+
+Authorisation can be passed in the headers.
+ 
+
+Request - Authorization: auth_token
+Response -201 Created
+
+{
+
+  subscription_id:
+
+  plan_name:
+
+  valid_till:
+
+}
+
+ 
+
+ 
+
+Q 2. How users are able to do unsubscribe from the Netflix Subscription plan? (Atlassian)
+
+ 
+
+Ans. User needs to send an Unsubscribe request which will call an API from any client app, calling DELETE method to our subscription service, this HTTP method will return HTTP 200 status code if it’s successful and it will soft delete the entry of the user from Subscription table and User will not be allowed by the system to watch premium content thereafter.
+
+ 
+
+ 
+
+Q 3. How the user is able to search for their favourite Videos/ movies on Netflix? (Flipkart)
+
+ 
+
+Ans: The user is able to search for their favourite shows on Netflix by using the search icon present at the top of Netflix’s homepage. They can search for their favourite movies, web series by their particular names or they can even search using any of the meta-data associated with the video.
+
+
+Netflix’s feature of Elastic search enables users to do this search by meta-data or complete-text data search and even it sorts the data on the basis of recommendations, reviews, etc at the time of search only.
+
+ 
+
+ 
+
+Q 4. Can you scale your existing system and if yes, is load balancing required? (Uber) 
+
+ 
+
+Ans. Yes, we can add more replicas of servers to enhance availability and liveliness in case of fail-over, we do require a load balancer to keep health checking of our server pods. Behind the load balancer, we will add multiple servers and the load balancer will divide the traffic accordingly, so in case if any server fails, it will stop forwarding traffic to that server pod. This will improve redundancy also. Our load balancer will make sure any request will not fo unresponsive due to such fail-overs. This is known as Horizontal Scaling.
+
+ 
+
+Database Replication- In terms of database, as we stated before we can follow master-master architecture in MySQL deployed over EC2. We can have multiple replicas to be available for reading operations and ensure that no write operation can stop our read operations from secondary replicas, and in case of primary DB fail the other replica will take over as master.
+
+ 
+
+ 
+
+Q 5. Can you tell how Video Deduplication works and its significance in Netflix System Design ? (Hulu) 
+
+ 
+
+Ans. Video duplications generally have different ratios, encodings, and other features of videos that impact Data Storage(saving multiple copies) and decreased caching efficiency, increase the amount of data to be sent in-network caching system, and resource consumptions. 
+
+Users will face inefficient search results, interrupted streaming, so it becomes sensible to use Deduplication techniques while processing data. Netflix uses Inline Deduplication that saves many resources during encoding/transcoding, transferring over the network, and storing in DB by ignoring duplicates data. All this process starts when any video is getting uploaded, a services run a video matching algorithm to find duplications using many techniques like Phase correlation, Block pattern matching. If any duplications start detecting, it either halts the upload process or uses video which is of better quality. In case any part is a subpart of the existing video it divides the video into chunks and able to upload new parts. 
+
+
+
+
+
+
+Interviewer : 
+ 
+
+1) How does Netflix show different thumbnails or banners for each content to different users?
+
+2) How does the movie/tv show recommendation work in Netflix?
+
+3) How do you predict a user's preference and show them content recommendations?
+
+ 
+
+ 
+
+Artwork personalization
+ 
+
+Whenever you open the Netflix website or app you might have noticed the images for each video. These images are called header images or popularly known as thumbnails. Netflix wants maximum clicks for the videos from the users and these clicks are dependent on the thumbnails. Netflix has to choose the right compelling thumbnail for every other video/movie. To do that Netflix creates multiple artworks for a specific movie and they display these images to the users randomly. For a particular movie, there can be multiple images based on users and their preferences and viewing history. Based on this, Netflix predicts what kind of movies you like best or which actors you like the most in a movie. According to users’ choice, the thumbnail will be displayed to them.
+
+ 
+
+For example, suppose you see 5 different images for your favourite show F.R.I.E.N.D.S in three rows (If you like comedies then images of comedy scenes will be displayed. If you like romantic scenes then it will show you the image of Mathew Perry and Courteney Cox ). Now, Netflix uses an algorithm to calculate the number of clicks on a certain image. Whichever image receives more clicks, Netflix will make it as a header image for the show F.R.I.E.N.D.S forever. The algorithm used by Netflix is called data-driven and Netflix performs the data analytics using this approach. To make the right decision, data is calculated based on the number of views/clicks associated with each picture.
+
+
+ 
+
+Video/Movie Recommendation
+ 
+The recommendation system is used by users to find their favourite movies and shows.
+
+To build this recommendation system, Netflix has to predict the user preferences and it gathers different kinds of data from the users such as:
+
+ 
+
+User interaction with Netflix (user viewing history).
+Other users with similar preferences.
+Metadata information from the previously watched movies/shows for a user such as titles, genre, categories, actors, release year, ratings, etc.
+At what time a user is more active and for how long a user uses the service.
+
+
+
+
+Further Readings
+
+ 
+
+Official Netflix Blog website- https://netflixtechblog.com/ 
+
+
+ 
+
+Some Important blogs you don’t want to miss
+1. NetFlix Drive- An interface to store files and folder by Netflix
+
+https://netflixtechblog.com/netflix-drive-a607538c3055
+
+
+ 
+
+2. Beyond Rest- Discover GraphQL microservice
+
+https://netflixtechblog.com/beyond-rest-1b76f7c20ef6
+
+
+ 
+
+3. Adapting Kotlin- Android and iOS apps supported by Kotlin
+
+https://netflixtechblog.com/netflix-android-and-ios-studio-apps-kotlin-multiplatform-d6d4d8d25d23
+
+
+ 
+
+4. Python at Netflix
+
+https://netflixtechblog.com/netflix-android-and-ios-studio-apps-kotlin-multiplatform-d6d4d8d25d23
+
+
+
+
+
+Twitter System Design
+ 
+
+Problem Statement 
+ 
+
+Design Twitter.
+
+Or Design Twitter Timelines and Searching 
+
+Or Design High-Level System Architecture for Twitter. 
+
+Or Explain the logic behind the core functionalities of Timelines in Twitter.
+
+
+
+Low Level Design 
+ 
+Interviewer:
+ 
+
+1) Give a naive solution for the platform you are designing.
+
+2) Explain your initial thoughts on the system you are designing?
+
+3) Give a rough idea about twitter as a platform for few hundred users and then scale it accordingly?
+
+ 
+
+ 
+Naive Solution 
+ 
+
+Database Schema : We can use a relational database like MySQL, Microsoft SQL Server or cloud relational databases like Google Cloud SQL etc. 
+
+We can have two tables : 
+
+ 
+
+1. User table (id, username) : User information will be stored in the user table. 
+
+2. Tweet table(id, content, user id (primary key of user table), date) : This table will contain all the tweets of the users sorted according to the date.
+
+ 
+
+Relationships : 
+ 
+
+1. Self referential relationship : We will have one self referential relationship (relationship of one record with other records in the table) on the user table itself. It will be for the concept of users and their followers. 
+
+ 
+
+2. User table and tweet table : We will have a relationship of 1: M (one to many) between the user and the tweet table and the foreign key will be userid in this case.
+
+ 
+
+ 
+Bottleneck Or Limitation Of The Current Design : 
+ 
+
+Every-time , for getting the feed of a user we will have to use the SELECT query on the tweet table , which may be fine for a few users but as the traffic increases, it will be very resource intensive and the end user experience in terms of loading and displaying results will not be very optimal. So we need to take into account this bottleneck and the traffic on our system and design a new system.
+
+
+
+
+
+ User Timeline
+ 
+
+Interviewer : 
+ 
+
+1) How does user timeline work in twitter?
+
+2) What should be the request parameter for getting the user timeline?
+
+3) Does twitter utilise caching for user timeline?
+
+4) How can another user explore other users timeline?
+
+ 
+
+ 
+User Timeline (Creating a Tweet)
+
+User Timeline in Twitter would work by getting user_id as the request parameter, mapping it in the database, and finally return a list of the tweets made by the user or even the retweets made by the user in the order of date created as the response.
+
+
+Here, the point to be noted is that some of the user timeline queries can be saved in the Redis server, to serve the purpose of Caching. So that some of the user's tweets are accessible even without approaching the desired database. This is helpful and is actually required when another user comes into the picture! That is, if someone else wants to access the tweets made by the user, Caching Layer serves this purpose here. Caching layer gets the data from the Redis server and makes it accessible to the other user.
+
+
+
+
+Home Timeline
+ 
+Interviewer :
+ 
+
+1) What is a home timeline for a user?
+
+2) How does twitter display all the tweets of the pages or users they follow for a user ?
+
+3) How is the concept of caching used in home timeline?
+
+ 
+
+ 
+
+Home Timeline
+ 
+
+ 
+
+The Home Timeline of a user would contain the tweets of the user itself and the pages or the users that it follows.
+
+One approach to access all the tweets of the followers could be -
+
+- Firstly, we need the user_ids of the accounts that a person is following.
+
+- Fetch all the tweets made by the different user_id's
+
+- Merge the tweets in order of the time created. (Most recent Tweets first.) 
+
+ 
+
+This approach serves a lot of time overhead, and as a solution what we have here is a FAN-OUT approach.
+
+
+Fanout Approach is a much simpler approach where we inject a person’s tweet into the home timeline of the individuals that follow that person i.e just access the cache by user_id parameter and get access to the tweets made by the user! Just by injecting the tweets into other people’s timelines, the time overhead of the 1st approach is resolved to much extent. This injecting of tweets is made possible by the presence of a Redis server that helps at the caching layer as well, and saves some of the user’s tweets queries as cache, and uses them as and when required. 
+
+
+
+
+
+
+Searching
+ 
+
+Interviewer : 
+ 
+
+1) How does searching work in twitter?
+
+2) Explain the two approaches : Keyword and Hashtag for searching content in twitter?
+
+3) How is indexing used in keyword approach?
+
+ 
+
+ 
+
+Searching
+ 
+Earlybird is used to manage real-time tweet-searching or hashtags by Twitter, reverse indexing based on Lucene.
+ 
+
+Searching in Twitter can be done by two approaches-
+
+ 
+
+Keyword Approach
+ 
+
+The approach is generally used by a naive user that comes to Twitter and randomly searches for a topic, and generating Twitter Search API call, which will just sort and rank the tweets observed by the Twitter platform based on the required “keyword” using Indexing strategy to sort the tweets over a few past hours and will return the optimised tweets as the required response.
+ 
+
+ 
+
+Hashtag Approach
+ 
+
+This is a smart-user approach when using Twitter. Hashtags generally result in a more informative and effective tweet since they are generated by the most active audience of Twitter. This also calls for a search API, which would rank, sort, and merge data based on certain parameters (mainly geological tweets and tweets per unit time) and generate an optimised response for you.
+
+
+
+
+Databases
+ 
+
+Interviewer : 
+ 
+
+1) Which database is used for handling the large amounts of data at twitter?
+
+2) How does twitter store the data metric logs ?
+
+3) Which database is used for storing video files?
+
+ 
+
+ 
+
+Databases
+ 
+
+Twitter uses different Databases depending on the functionalities that they are going to support. 
+
+ 
+
+Hadoop- Twitter uses Hadoop for storing large amounts of data like Social Graph Analysis, Recommendation to follow, Trends Analytics, API analytics, MySQL tables backup, storing user logs. Hadoop file System stores 500 PBs of data over 10K+ instances.
+ 
+
+MySQL and Manhattan as master DB for storing data of end-users. Manhattan is NoSQL which provides real-time multi-tenant scalable distributed DB and serves Millions of queries in a second with really low latency and is highly available. Tweets, DMs, user details are stored in manhattan.
+ 
+
+MemCache and Redis for storing cache Data, required for generating a timeline
+ 
+
+FlockDB for storing social graphs, how users are connected with each other.
+ 
+
+Metrics DB for storing data metrics of Twitter platform
+ 
+
+BlobStore for storing binary large objects and images, videos, and other files.
+
+
+
+
+
+
+Q 1. As you have a table for users, tweets, user-follower mapping, and other things, which sharding techniques you’ll use to manage this gigantic data?  (Facebook)
+
+ 
+
+Ans. A huge number of new tweets are generated every day due to which the load is extremely high and a single database can’t handle it. We need to distribute our data into multiple machines by sharding the data. The sharding of data can be done in the following ways:
+
+ 
+
+1. Sharding based on UserID: It is based on hashing UserID where we will map each user to a server where all of the user’s tweets, favorites, follows, etc are stored. This approach does not work well if users are trending and we end up having more data.
+
+ 
+
+2. Sharding based on TweetID: based on TweetID, we map each tweet to a server that stores the tweet information. To search for tweets, we have to run a query for all servers, and each server will return a set of tweets. This approach solves the problem of trending users but increases the latency.
+
+ 
+
+3. Sharding based on TweetID & create time: generating TweetId based on the creation time. We then shard the database based on TweetId. This approach is similar to the second approach and we’ll still run a query to search for tweets. However, the latency is improved as we don’t need a separated index for timestamp when sorting tweets by create time.
+
+ 
+
+ 
+
+Q 2. How you are able to do Synchronous Database queries for managing tweets? (Oracle)
+ 
+
+Ans. Synchronous database query is the first thing to consider when we are talking about designing a big network like Twitter. It will help us towards high-level architecture. We can design a solution for two things:
+
+ 
+
+Data modeling: We can use a relational database like MySQL and you can consider two tables: user table (id, username) and a tweet table[id, content, user(primary key of user table)]. User information will be stored in the user table and whenever a user will tweet anything it will be directly stored in the tweet table. Two relations are also necessary here. One is the user can follow each other, the other is each feed should have a user owner. So there will be a one-to-many relationship between these two tables.
+
+ 
+
+Serve feeds: We need to fetch all the feeds from all the accounts a user follows and arrange them in chronological order.
+
+ 
+
+ 
+
+Q 3. How the user is able to see Notification for activities related to his news feed? (LinkedIn)
+
+ 
+
+Ans.  There are different options for displaying new posts to the users.
+
+ 
+
+Pull model: Data can be pulled on a regular basis or manually whenever the client wants. The problem of this approach is the delay in updates as new information is not shown until the client issues a pull request. Most of the time pull requests result in an empty response as there is no new data, and it results in a waste of resources.
+Push model: In this model, whenever a user creates a new tweet, it will send a push notification to all the followers. A possible problem with this approach is that an account having millions of followers creates a new tweet, the server has to push updates to a lot of people at the same time.
+Hybrid: It will combine both pull and push models. The system only pushes data for those who have hundreds of (or thousand) followers. For users having millions of followers, we can let the followers pull the updates.
+
+ 
+
+Q 4. Suggest any way to improve the Timeline update process. (Twitch)
+ 
+
+Ans. If the system treats all users the same, the interval of timeline generation for a user will be long and there will be a huge delay in his/her timeline for new posts. One way to improve that is by prioritising the users who have new updates. The new tweets will be added to the message queue, timeline generator services pick up the message from the queue and re-generate the timeline for all followers.
+
+ 
+
+ 
+
+Q 5. Can you tell how home timeline generation takes place for the user if he/she is following any celebrities(users with too many followers)?
+ 
+
+Ans. The timeline should contain the most recent posts from all the followers. It will be super slow to generate the timeline for users with a lot of followers as the system has to perform querying/merging/ranking of a huge number of tweets. Hence, the system should pre-generate the timeline of the user instead of generating it when the user loads the page.
+
+There should be dedicated servers that are continuously generating users’ timelines and stores them in memory. Whenever users load the application, the system can simply serve the pre-generated timeline from the cache. Using this scheme, the user's timeline is not compiled on load, but rather on a regular basis and returned to users whenever they request it.
+
+
+
+
+
+
+
+
+Problem Statement
+ 
+
+Design a URL Shortener.
+
+Or Design bit.ly or TinyURL service
+
+
+
+
+
+Architecture and Components
+ 
+Clients and Web Server
+ 
+
+Web Browser/ Mobile apps are the service provider which will communicate to our backend services using HTTP/HTTPS protocol. 
+
+We would need multiple web-server to ensure high availability and scaling horizontally, A load balancer will be required to distribute all requests evenly to different servers.
+
+ 
+
+ 
+
+Requests and Storage
+ 
+
+Every user uses shorteners when they are going to use URL multiple times and redirection also happens most of the time, so Read operations on our DB are much more than write operations, on an average considerably it’s 1:100, So our system is going to be read-heavy system. 
+Let’s say we get 20 URL generation requests per second So on average we will get 30 days * 24H * 3600sec * 20 = ~50M write requests per month. And 5 Billion read requests per month, So we would be needing good storage and caching system for this.
+
+We assumed we will be storing 50M URLs every month and each object will take around 100 bytes, So 1 TB storage is enough for us for storing data for 5 years at the current rate. 
+
+ 
+
+ 
+
+Caching
+ 
+
+We would be requiring Cache for popular URLs let’s say 20% of total requests. So for that purpose, we would need 20 GB of memory for caching. By introducing Caching we can also scale our read queries. We can simply implement an LRU(least recently used) approach for evicting cache policy.
+We also need to update Cache if many requests start coming for any new URL, so we need to update the cache for that new entry. 
+
+
+
+
+
+Low-Level Design
+ 
+
+Interviewer:
+ 
+
+Give a naive solution for URL shortener service.
+Tell me in brief about initial thoughts on the service you’re designing?
+Give a LLD for URL shortener
+ 
+
+Interviewer:
+
+Naive Solution
+ 
+
+For a solution for a limited number of users, we can simply use MD5 or base62 algorithm for encryption and map them to the respective long URL in a table and query on it. Every time a user hits a short URL we will return a mapped long URL for it. 
+
+We can simply follow REST API architecture or SOAP to make all services.  We would need three main APIs
+
+CreateURL
+DeleteURL
+RetrieveLongURL
+ 
+
+ 
+Database Design
+ 
+
+We require two tables basically, the main is for storing shortURL and longURL mapping and the other is for creating a userTable to store information about a user and all created URLs by that user. 
+
+We can choose any NoSQL or SQL Database as we aren’t dealing with many columns, but we need to query fast enough, So that it ensures high availability. 
+
+ 
+
+ 
+Encryption of Long URL
+ 
+
+We can use any hashing algorithm like MD5 or SHA256 for any given URL, and the hash can be used to generate a short URL. We can use the base62 [A-Z, a-z, 0-9] algorithm which provides so many different permutations. Let’s suppose we are keeping our shortURL's length 8 characters, So it would provide us with different permutations of 64^8 = ~281 trillion possible strings.  
+
+
+
+
+
+Short URL Storage
+ 
+
+Technique 1
+ 
+
+Check whether generated shortURL is present in DB or not, if yes regenerate hash and encode another short URL, if no then add the shortURL and longURL mapping. 
+Problem- If two parallel operations are trying to add an in-race condition, it will end in adding corrupted data to the table and will lead to inconsistency issues.
+
+ 
+
+ 
+
+Technique 2
+ 
+
+Calculate MD5 hash for the longURL and take the first 8 letters to generate a shortURL, Now we can check again in DB if it’s not used before. 
+Advantage- MD5 of two same URLs will be the same so, if two different users are trying to shorten the same URL it will save space. But again the inconsistency problem still persists. 
+
+ 
+
+ 
+
+Technique 3
+ 
+
+We can use Counters on our server, so whenever a client requests a shortened URL, we will return a counter incremented on every request. So every service will get a unique number that can be used to generate a unique shortURL.
+
+Now the challenge is that if we have multiple nodes of the server how we will manage counters on different nodes. It will lead to a single point of failure and a single point of bottleneck in the system. 
+
+ 
+
+ 
+
+Final Approach
+ 
+
+We will use distributed systems that will be running multiple nodes of the server and will be coordinating with each other to serve requests. So to implement coordination we need to use Zookeeper, which allows us to maintain counters for different nodes simultaneously. Zookeeper also eliminates Race Condition, Deadlock, and Inconsistency issues as every node can independently work without waiting or depending on other nodes. 
+
+Zookeeper takes ranges, let’s say 1000 ranges of 1 billion permutations of shortURLs, and for every node, it allocates a range and if range gets exhausted it allocates another range. So scaling gets easier if we want to add new nodes, Zookeeper will simply give it a fresh range. And after exhausting 1000 ranges, we can use another billion permutations.
+
+
+
+
+Databases
+We can use any DBMS, ie SQL or NoSQL, For SQL scaling is not that efficient we can apply sharding but that also doesn’t go well with this use case, but we can use an insert-If-Absent feature of SQL to avoid collisions, but that problem is solved by introducing counters. 
+
+NoSQL on other hand is scalable and also goes well with useCase, so we can use any NoSQL database like MongoDB or Cassandra.
+
+
+
+
+
+Interview Questions
+ 
+
+Q 1. Can you clarify how data flows for your URL shortener service? (Facebook)
+
+ 
+
+Ans- Our main task is to generate a unique key for an input longURL, considering we only have one input string. Storage of that input string is mapped to a unique shortURL that is our output.
+
+So, if someone searches for shortURL, our retrieveAPI will return mapped longURL as output. 
+
+ 
+
+ 
+
+Q 2. Can you enlist some other features apart from these core functionalities of URL shortener. 
+
+ 
+
+Ans- 1. Customized shortURLs- If a user wants to customize shortURL, then we can provide one more input field to allow the user to enter a customized shortURL and then in the backend we will map that customized URL to some unique key, we also have to check if that custom shortURL already exist or not in our DB.
+
+2. Modifiability- we can consider a use case in which the user wants to edit the URL, So we can provide user functionality to update the mapping, considering all bottlenecks and issues that this update feature can lead to. 
+
+ 
+
+ 
+
+Q 3. Can you tell any approach to save data storage and cache storage? (Atlassian)
+
+ 
+
+Ans- We can make a scheduler(cron Job) that is basically an asynchronous service that will remove the expired shortURLs and will be storing them in any data store for any future use. After cleaning up DB, we can allocate a flag to shortURL hash that now it’s unused and we can reuse it for any new request.
+
+
+
+
+
+
+
+
+Uber System Design Contents
+ 
+We'll cover the following :
+ 
+
+ 
+
+→ Problem Statement
+ 
+
+→ Introduction
+ 
+
+→ Architecture
+ 
+
+→ Uber Challenges
+ 
+
+→ Demystification of Uber System Design
+ 
+
+→ How Uber map works and ETA calculation
+ 
+
+→ Interview Questions
+
+
+
+
+
+Uber System Design
+ 
+Problem Statement
+ 
+
+Design Uber.
+
+Or Design Uber Demand and Supply service 
+
+Or Design High-Level System Architecture for Uber. 
+
+Or Explain the logic behind the core functionalities like ETA in the Uber app.
+
+
+
+
+
+
+
+
+
+ Uber Challenges
+ 
+Uber Challenges
+
+Serving the mobile traffic is the main task of the uber backend. As we know uber uses GPS to find the exact locations of the rider and driver so without the phone, it is pretty hard to run these services. The challenging thing for uber is to match the riders with the cabs. So for this, uber uses two services:
+
+Supply Service
+Demand Service
+ 
+Supply Service
+ 
+
+This tracks cars using geolocation (latitude and longitude) Every cab which is active state sends its geolocation after every 4 secs.
+Along with the location of the cab, they also track other attributes of the cab like the model of the cab, the number of seats available, whether it has space for the wheelchair or not.
+This also tracks the number of seats occupied in a particular cab and how many seats are available.
+ 
+Demand Service
+ 
+
+This service tracks the GPS location of the requested user.
+Not only it tracks its location it also tracks the requirements of the user like whether it requires a helper or not, or requires a small car or a big car.
+This also tracks that the user demands should be matched with the supplied cab.
+ 
+
+Now we have two separate services for demand and supply so we need a service that can match the demand to supply and that service in Uber is known as DISCO. 
+
+ 
+DISCO - DISPATCH Optimization
+ 
+
+Some key responsibilities of this system are:
+
+Reduce extra driving
+Reduce ETA
+Reduce waiting time
+
+
+
+
+
+
+
+Demystification of Uber System Design
+ 
+
+How DISCO works?
+ 
+
+Uber dispatch system completely works on Location data and map data. So we have to model our location data and map data properly. It is very difficult to find accurate locations using latitude and longitude data. To solve such a situation uber uses the Google S2 library.
+
+Google S2 library divides the earth into tiny cells and each cell has its unique id. S2 library can give coverage for a shape. For example, you want to create a circle of 1 Km radius with a center as Delhi, S2 can tell all the cells that are required to make a circle. So in this way you can easily find out all the cabs that are present in that particular area. This way the user can be easily mapped to the driver.
+
+ 
+
+ 
+How to Scale the Dispatch System?
+ 
+
+There are many ways but in uber:
+
+Dispatch is built using node.js because node.js is the asynchronous and event-based framework. And it also provides functionality to send and receive messages over WebSockets.
+So using this user anytime can send messages to the server and the server can send messages anywhere.
+ 
+
+ 
+How to scale these DISCO servers?
+ 
+
+To scale DISCO servers Uber uses REPOP. It has 2 functionalities:
+
+Consistent Hashing- This is used to distribute the work among the servers.
+RPC Call- This is used to make calls from one server to another server.
+Disco servers also use the SWIM protocol to know the responsibilities of the other servers. We can easily add or remove the server to the ring. When we add any server to the ring the responsibilities are distributed to the new server and if we remove any server the responsibilities are added to other servers.
+
+ 
+
+ 
+How Riders are mapped to drivers using the dispatch system?
+ 
+
+As we have already learned, the DISCO divides the map into tiny cells and each cell has its unique ID. This unique ID is used as a sharding key in DISCO. When any driver (supply) gets a request from the user (demand) the location gets updated using the cell ID. These tiny cells' responsibilities are divided into multiple servers lying in multiple regions (consistent hashing).
+
+ 
+
+Whenever the user sends the request to the specific server based on the GPS location data. Then the system draws a circle using that GPS location and filters out all the nearby cabs which meet the user’s requirement.
+
+After this, the list of the cabs that meet the user's requirement is sent to the ETA to calculate the distance between the user and the cab, the ETA is calculated using the road system.
+
+Sorted ETA is then sent back to the supply system to offer it to the driver.
+
+
+
+
+
+
+ Uber Maps and ETA
+ 
+
+How does Uber define its map?
+
+Uber uses a third-party service provider to define the map in their application. Uber uses Google Maps API to track the location and to calculate ETA.
+
+ 
+
+1. Trace coverage: Trace coverage is used to identify all the missing road segments and incorrect road geometry. The computation uses two inputs- map data under testing and the GPS data of all the historic uber rides taken over a certain period of time. These data are compared and matched to find the missing road segments and if any missing road segment is found then effective steps are taken to fix the deficiency.
+
+ 
+
+2. Preferred access (pick-up) point accuracy: Whenever a rider books a cab it provides a pick-up location. Pick-up points are a really important metric for the rider experience, especially at large venues like airports, stadiums, bus stands, companies, etc. Using this metric we calculate the distance of an address pinned on a map between all pick-up points and drop-off points used by the driver. We then set the closest actual location to be the preferred access point for the said location pin. To ensure freshness and accuracy we continuously compute this metric with the latest actual pick-up and drop-off locations.
+
+ 
+
+ 
+How does Uber calculate ETA?
+ 
+
+ETA is an important metric in Uber because it directly impacts ride-matching and its cost. Uber calculates ETA using the road system not using the geographical system as it provides a realistic idea of ETA. There are many factors that are involved while calculating ETA like heavy traffic, roads blocked, or road constructions.
+
+Whenever a rider requests a cab, Uber not only identifies the idle cabs but also tracks the cabs that are about to finish their ride. This is because there may be a possibility that the cab which is going to complete its ride is closer to the rider than the other cabs. To calculate ETA we can simply use Dijkstra’s algorithm to find the best route. The whole road network is converted into a graph where the nodes represent the pick-up and drop-off points and the edges represent the road segments. The edge weights represent the metric of interest: like road segment distance or time required to travel the road.
+
+ 
+
+So now we know the data structure used to calculate ETA along with this for faster performance we also need to use OSRM (Open Source Routing Machine) based on contraction hierarchies. Systems based on contraction hierarchies achieve fast performance, they just take a few milliseconds to compute a route by processing the routing graph.
+
+ 
+
+ 
+How is the Map region defined?
+ 
+
+Before Uber launches a new operation in a new area, Uber onboard a new region to its technology stack. Inside this map region, it defines various subregions labeled with grades A, B, AB, and C.
+
+ 
+
+Grade A: This subregion covers the urban centers and the commute areas. Around 90% of Urban traffic is covered in this subregion, As it covers most of the traffic so it is important to build the highest quality map for this subregion.
+
+Grade B: rural and suburban areas are covered in this subregion which is less populated and less traveled by Uber customers.
+
+Grade AB: A union of grade A and B subregions.
+
+Grade C: This region covers highway corridors connecting various Uber Territories.
+
+
+
+
+More Interview Questions
+ 
+
+1. Highlight major analysis of Uber Architecture?
+
+ 
+
+Earlier the uber application was built on a “monolithic software architecture model.” There was a single database, a frontend service, and a backend service. The language used was a python, and the application was limited to some cities. Later on, the team switched to a “service-oriented architecture,” and the rest is history. There came uber eats and cargo services, etc. 
+
+
+ 
+
+2. What are the main challenges to be faced while designing the architecture of Uber?
+
+ 
+
+The main challenge is to match the rider with the cabs. To serve this purpose we need two architectures - 
+
+a) Supply service for cabs and demand service for customers
+
+b) Using a DISPATCH system, there can be a match between supply and demand. 
+
+
+ 
+
+3. Explain the DISPATCH system? (Facebook)
+
+ 
+
+The DISPATCH or DISCO must have these characteristics - 
+
+Less waiting time
+No or less extra driving
+Low overall ETA
+The DISCO system completely works on location, and this becomes the first task to model map and location data. 
+
+As the earth has a spherical shape, it becomes a tedious task to approximate and summarizes latitudes and longitudes. The Google S2 library can be used to solve the location problem. This library makes a circle of a 3km radius, and it will filter out all the cells with the ID which comes in that circle. So in this way, we can find out the cars available near a customer and the nearest car that can be booked. 
+
+
+ 
+
+4. Explain the demand and supply service? (Meru Cabs)
+
+ 
+
+After seeing the requirements, cabs are the supply services, and they will be tracked by geolocation. All the registered cabs with uber send the location to the server in a time span of every 4 seconds through a web application firewall and load balancer. The data hub used here is Apace Kafka. Once the location is updated by Kafka, it is transferred to the main memory. Its copy is sent to the databases and the dispatch optimization so that the location always remains updated. 
+ 
+The demand service works in such a way that it receives the request of the cab through web sockets. It then tracks the GPS location of the user. External requirements like car plate number, specification, model of the car are also received. The demand service gives the cell ID and user requirements to fulfill the needs and place an order.
+
+ 
+
+5. In what way a map region is defined? (Tab Cab)
+
+Before making any operation in a new area, it is updated to map the technology stack. There are various sub-regions in this map region, such as A, B, AB, and C.
+
+ 
+
+Grade A - This subregion covers the commute and urban areas. The highest quality map region is to be built in this region because 90% of uber traffic is covered here.
+Grade B - This region has fewer customers who use Uber and comes in rural and suburban areas. 
+Grade AB - This is the union of Grade A and Grade B. 
+Grade C - All the highway corridors are covered by this region connecting uber with Uber territories.
+
+
+
+
+
+
+Instagram System Design Content
+ 
+
+We'll cover the following : 
+ 
+
+→ Problem Statement
+ 
+
+→ Introduction and Features
+ 
+
+→ Requirements and Approximations
+ 
+
+→ Low-Level Design
+ 
+
+→ Architecture and Components
+ 
+
+→ News-feed Generation
+ 
+
+→ Databases
+ 
+
+→ More Interview Problems
+
+
+
+
+
+
+ Instagram System Design
+Problem Statement
+ 
+Design Instagram.
+
+Or Design Instagram Feed and follower-Network
+
+Or Design High-Level System Architecture for Instagram. 
+
+Or Explain the logic behind the core functionalities of Instagram.
+
+
+
+
+
+
+Requirements and Approximations
+ 
+
+When we see the extended requirements of the application, scalability is a point to be kept in mind. So here are some characteristics of the application required -
+
+Efficient storage  
+
+There is no limit to upload a photo or video on Instagram, and there are around 1 billion active users on Instagram. Consider a scenario if each user uploads three photos or videos each day and if each picture takes 150 KB. The amount of storage needed will be
+
+3 * 150 *  106    = 450 GB
+
+And if this storage is kept on increasing for many years, we will need a different server to manage the database. So we need other scaling methods, which include Vertical Splitting and Horizontal Splitting.
+
+ 
+
+ 
+
+High consistency and availability 
+ 
+
+The app should be highly available with minimum latency in developing the photos, videos, or news. When compared, consistency is the secondary option to availability because it is acceptable to upload pictures and is not immediately viewed by the followers. So we should aim to build a consistent system with high availability. 
+
+
+ 
+Read Heavy 
+ 
+
+The graph of viewers is much higher than the uploaders. Since the read requests of Instagram are so high, we should aim to develop an application that has a high number of reads per second. 
+
+
+
+
+
+
+
+News Feed Generation
+ 
+
+1. Generating news feed:
+ 
+
+As every user scrolling through Instagram needs the latest photos and the photos of the followers he/she follows. So generating a unique news feed for every user is the most critical task of Instagram. For example,
+
+a user is following 100 people, and each following person uploads one photo every day, so the user news feed will be the combination of those 100 photos, and some computations will also be done on these photos to find their ranking over the feed. If we do all these things in real-time then it will take higher latency and the app will slow down.
+
+ 
+
+Pregenerated news feed
+ 
+
+To overcome the problem of higher latency while generating the news feed we can prefetch the unique feed of the user, do some computation to find their ranking in the field, set them together, and place it into a separate table. So whenever a user needs the latest data we can use some query over this table.
+
+ 
+
+ 
+2. Serving the news feed
+ 
+
+Now as we learned how we can generate the news feed then another major task is how we can serve the news feed. This can be done in three different ways: push-based approach, pull-based approach, and hybrid approach.
+
+ 
+
+1. Push-based approach: whenever a user uploads any photo his followers will get a push notification about that photo. This approach seems good but there is one problem with this approach. If a user has a 1k following and all upload photos at the same time then a user will get 1k notifications and this is not correct.
+
+ 
+
+2. Pull-based approach: In this approach, the user can refresh its feed anytime and the latest feed will be fetched from the server. But the problem with this approach is that the user has to pull the data and sometimes it can produce empty results also.
+
+ 
+
+3. Hybrid approach: In this approach, we divide the users into 2 parts 1st users with lots of followers and 2nd normal users that means users having fewer followers. So for the 1st type of users, Instagram provides a pull-based approach to serve news feeds and for 2nd type of user, Instagram provides a push-based approach to serve news feeds.
+
+
+
+
+
+
+
+Contents
+We'll cover the following : 
+ 
+
+ 
+
+→ What is BookMyShow?
+ 
+
+→ Problem Statement
+ 
+
+→ Low Level Design
+ 
+
+→ Architecture and Components
+ 
+
+→ How does the system talk with theatres?
+ 
+
+→ How to Sync Ticket Availability with Theatres?
+ 
+
+→ Database Design
+ 
+
+→ Additional Interview Questions
+
+
+
+
+
+
+ BookMyShow System Design
+ 
+Problem Statement 
+ 
+
+Design BookMyShow (BMS)
+
+Or Design High-Level System Architecture for BookMyShow
+
+Or Enlist different layers and operations in designing a Movie Ticket Booking System.
+
+
+
+
+
+
+
+ Low Level Design 
+ 
+
+BookMyShow would require user data, movie data, city-wise data, event Data and APIs to talk to theatres for seat availability. 
+
+ 
+
+Database Model 
+
+User(userId, Name, email, password, phone)
+
+City(CityId, Name, state, ZipCode )
+
+Movie(movieId, Title, Description, duration, language, releaseDate, Country, Genre)
+
+Cinema(CinemaId, Name, TotalHalls, CityId(FK to Cities))
+
+Shows(showId, Date, startTime, endTime, CinemaHallId(FK to Cinema_Hall), movieId(FK to Movie))
+
+CinemaHall(CinemaHallId, Name, totalSeats, CinemaId(FK to Cinema))
+
+CinemaSeats(CinemaSeatId, SeatNumber, type, CinemaHallId(FK to Cinema_Hall))
+
+Show_Seat(ShowSeatId, Status, Price, CinemaSeatId(FK to CinemaSeat), ShowId(FK to Shows), BookingId(FK to Booking table))
+
+BookingTable(BookingId, NumberofSeats, TimeStamp, Status, userId(FK to user table), showId(FK to shows Table))
+
+Payments(paymentId, Amount, timestamp, discountcouponId,RemoteTransactionId, paymentMode, BookingId(FK to booking table))
+
+
+ 
+
+Below are some APIs that can be used to fetch and post data.
+
+ 
+
+getAllCities()- returns a list of cities where operations are live from the City table.
+getListofLocations(cityID)- return all theatres, event halls based upon which city user chose without any classification of events
+getListofEvents(cityID)- It will return all trending events like movies, shows in a particular city, then after selecting event it will show particular locations where the show is happening.
+getListofLocations(cityID, eventID)- returns all locations in a city where a particular event is happening.
+getListofEventsLocationWise(cityID,locationID)- this is one of the main APIs, returns a list of all movies and shows at the particular theatre in a particular city. For eg let’s say if we have 3 halls at PVR Delhi, all halls would be showing different movies. 
+getEventTimings(eventID, locationID)- it will return event timings for a particular location. For ex- there are 3 show at different for any movie in a day at PVR, Delhi
+getAvailableSeats(eventID, locationID, showTimeId)- returns all seats for a particular show and on the basis of that, UI shows current availability.  After selecting a number of seats to be booked and positions at CinemaHall, another API call goes and verifies if selected seats are available or not. 
+VerifyuserSelectedSeatsAvailability(eventID, locationID, showTimeId, seats) returns boolean if seats are available or booked by another person.
+ 
+
+If we get true then we can block seats for that user and can redirect to Payment modes and in between if the user drops off or payment gets failed, we have to unblock all those seats that we blocked. 
+
+
+
+
+
+
+
+ How does our System talk with Theatres?
+
+Whenever we are talking with any theatre, Every theatre would have a sales app(Point of Sale, POS) which allows users to book tickets, So every theatre needs their own DB, Server, App/website. Without these POS apps, it wouldn’t be possible to book tickets online, we would need a third-party service then for blocking and confirming availability at the theatre's end. 
+
+So, our service needs to work with theatre’s services to block and view available seats in real-time. But now the question arises…
+
+What would happen if there were more than one aggregator? Obviously, there would be(PayTM ticket booking, Book my show and many others) so how to deal with that.
+
+We have two approaches to deal with it.
+
+We have dedicated seats available for our system only, no other aggregator can request those seats at the theatre's end, then we can allocate them on our own inside our services and just block them at the theatre's end.
+Need to work parallelly with all aggregators to block tickets at the theatre's end, then we need to sync up with all different systems. 
+
+
+
+
+
+How to Sync Ticket Availability with Theatres?
+ 
+
+In this case, we will connect to Theatre’s DB and will consume their APIs to sync and block available tickets. We have to check for available seats after a defined time or make a cron job for it, which will keep checking seats, and as soon as something changes we have to update our UI also. 
+
+Now the problem comes: what if two users are booking the same seat at the same time. That needs to be handled at theatre ends, there should be a buffer time to lock a particular seat and assign to the user on FIFO-based approach, temporarily until payment gets done. Let’s say within 10 minutes, the user drops off or payment failed, then releases that seat. 
+
+With such a system we are having so many IO blocking calls, we need to use lightweight threads or Async methods to get the best performance.
+
+
+
+
+Database
+ 
+
+We can use RDBMS for storing City wise information for different cities, All events, locations like theatres, event halls, shows, etc, Also user data can be stored in RDBMS. Most tables are for reading queries so we need to shard data on the basis of location tag. To keep concurrency we need to use Master-Master architecture. SQL ensures ACID properties and develops relationships between different tables. 
+We would need Hadoop and Spark to store user history, and streaming to get the Recommendation Engine for suggesting movies and shows and Analytics. 
+NoSQL databases like Cassandra are used to store huge amounts of data like information about movies, reviews about them, comments. We can distribute all these data in multiple nodes in different regions to ensure high availability.
+ElasticSearch SearchDB is required for making a faster search.
+
+
+
+
+
+
+Interview Questions
+ 
+
+    1. Explain working flow while booking a Ticket?
+
+Ans- 
+
+1. Users will search for the movie he wants to book a ticket for.
+
+2. Users will select the movie and will be shown available theatre and shows using location.
+
+3. Users will be able to select a suitable show for them and will be shown available seats for that show in that CinemaHall
+
+4. Users can select the number of seats they want to book.
+
+5. Users will be shown a seat map if the total number of seats presented is required by the user.  If not we can show an error message or redirect to all shows page back.
+
+6.  From the seat map user can select seats he wants to book and then we will reserve that seat. If those seats that user selected aren’t available we can do the following.
+
+7. Showing error that Show is full or other seats are available, and redirected to the theatre seat map. 
+
+8. We can also implement a waiting reservation pool, if seats are not booked, but are blocked for a timeframe(say 10 mins)
+
+9. If seats are reserved successfully then we can redirect users to the payment page and process booking payment, On successful transaction Seat is booked and notification/PDF/ mail is sent.
+
+10. In case of a failed transaction, blocked seats will be freed and will be available to users in the seat map.
+
+
+ 
+
+    2. Explain the technique used to manage logs?
+
+Ans- Log management is very useful to track user history and analysis of overall design. We use ELK(ElasticSearch, Logstash, Kibana) stack that’s managed by Elastic fully. As you might have read, Elasticsearch is an open source engine, which enables full-text search and analysis, based on the Apache Lucene search engine. Whereas, Logstash is an aggregator for logging that allows collection of data from different input methods, executes various different operations and enhancements and then sends data to desired destinations. Kibana is a visualization tool that works on top of Elasticsearch DB, providing us the ability to visualize and perform analysis on data.
+
+ 
+
+    3.Discuss Some Relationships required between different DB models?
+
+Ans-
+
+Movie-Show(1:M)
+Show-CinemaHall(M:N)
+Cinema-CinemaHall(1:N)
+Cinema-City(M:1)
+CinemaHall-CinemaSeats(1:M)
+Show-Booking(1:M)
+User-Booking(1:M)
+User-Payment(1:M)
+
+ 
+
+    4. How to handle Concurrency such that no two users can book the same seat?
+
+Ans- For handling concurrency at Db level we need to implement TRANSACTIONS in SQL DB to avoid any race condition. Transactions are basically sequences of some operations done to update, fetch, delete, create records, it powers ACID properties.  
+
+
+ 
+
+For example we want to check if in table if seat number 1,2,3 is present or not, in our DB, meanwhile we also want that if it’s available we want users to start booking after it. 
+
+So transactions can help us with it. 
+
+
+ 
+
+BEGIN TRANSACTION;
+
+
+ 
+
+Select * from Shows_Seat where showID=123 && showSeatId in (1,2,3) && status=0;
+
+
+ 
+
+Update Show_seat…..
+
+Update Booking…...
+
+
+ 
+
+COMMIT TRANSACTION; 
+
+
+ 
+
+We can check if seat- 1,2,3 for show 123 which is not blocked(status = 0) is present or not, if this query returns count = 3 we can update the table, and block seats for the user. 
+
+
+ 
+
+We should keep transactions Isolation level Serializable as it never allows Dirty, Phantoms, Non-repeatable reads on table. 
+
+
+
+
+
+
+
+
+ Contents
+We'll cover the following : 
+ 
+
+ 
+
+→ What is Zomato?
+ 
+
+→ Problem Statement
+ 
+
+→ Requirements
+ 
+
+→ Architecture and Components
+ 
+
+→ Services
+ 
+
+→ Database Schema
+ 
+
+→ Working Flow
+ 
+
+
+
+
+
+
+ Requirements
+ 
+
+Restaurants can register themselves
+Customers can create, edit their profile.
+Customers can search the restaurants using the restaurant name, place or location.
+Restaurants can add to the food menu.
+Customers can add/ remove items from cart.
+Customers can place orders.
+Customers can apply coupons.
+Delivery boy can get all the deliveries made by him.
+Customers can get order status anytime.
+Customers can make payment using various online methods.
+
+
+
+
+Architecture and Components 
+ 
+
+Client App- Zomato has an interactive User interface and it works on almost all devices like mobile, iPad, TV, and laptop. User Experience is also good on Netflix in terms of searching for food and restaurants. Kotlin is used to write the front-end. Zomato has three different apps for different users. One app for Delivery professionals where they can get trip info, one app for customers from where they can search restaurants and food as well as an order, and one app for the restaurant owners where they can see their orders and can manage their food items.
+Backend- Zomato has Microservices architecture on the API level which enables and serves requests from apps and websites. Microservices rely on each other internally for requests and fetching data. Java, MySQL, Google maps, and Hadoop are used on the backend to power the backend system. Everything from searching for food, ordering food, searching restaurants, and assigning it to delivery professionals is managed by the backend.
+
+
+
+
+
+
+
+ Services
+ 
+
+Restaurant Service: All the functionalities required by the restaurant are managed by the restaurant service. This will interact with restaurants data only This will allow restaurants to register themselves and admin to manage. First page of the application shows the list of restaurants which are managed by this service.
+User Service: Features related to user profile are managed by this service. This will interact with user data only.This will allow users and delivery boy to register and manage their profile.
+Food Menu Service: Whenever a user clicks on any restaurant food menu of that particular restaurant is rendered by this service.This only interacts with Food Menu data only. This service also allows users to search the food on the basis of some category.
+Cart Service: This will allow users to add or remove items from the cart. This service only interacts with cart data and will also call food menu service to get the items using id.
+Pricing Service:  This service allows the user to see bill details.
+Order Service: This service allows users to place or cancel their order. This service will interact with only order data. This will also allow user to see their order history.
+Payment Service: This Service allows users to make payments to the restaurants. This will interact with payment data only and this will call Pricing service to validate the payment and order service to update the order.
+Delivery service: This service deals with all the functionalities related to the order delivery. This service will interact with delivery data and will also call order service to update the order status.
+
+
+
+
+
+
+
+
+Database Schema
+ 
+
+Restaurant Schema
+->id: Restaurant Id unique for each restaurant 
+
+->name: Restaurant name
+
+->address: Restaurant address
+
+    
+
+     2. User Schema
+
+->id: User id unique for each user
+
+->name: User name
+
+->phoneNo: User phone no
+
+->address: User address
+
+ 
+
+    3. Menu Item Schema
+
+->id: unique id for each
+
+->itemName: Name of the item
+
+->cusineType: Type of cuisine (chinese, italian)
+
+->mealType: Type of meal (breakfast,lunch,dinner)
+
+->price: Item price
+
+ 
+
+    4. Food Menu Schema
+
+ 
+
+->id: This should be unique
+
+->restaurantIds: can be multiple
+
+->menuItemList: can be multiple
+
+ 
+
+    5. Order Schema
+
+ 
+
+->orderId: Unique id of order
+
+->userId: Id of user who places the order
+
+->restaurantId: Id of Restaurant in which order is placed
+
+->menuItems: Number of menu items that are ordered
+
+->orderStatus: represents status of order
+
+ 
+
+    6. Bill schema
+
+ 
+
+->id: unique Id
+
+->totalAmount: total amount of items
+
+->tax: tax of the items
+
+->discount: discount given on items
+
+->amountToBePaid: amount to be paid after including tax and discount
+
+ 
+
+    7. Payment Schema
+
+ 
+
+->id: unique id
+
+->orderId: Order Id for fetching order details
+
+->amountPaid: amount paid by user
+
+->couponCode: coupon code if coupon is applied
+
+->orderStatus: order status
+
+ 
+
+    8. Delivery Schema
+
+ 
+
+->id: Unique Id
+
+->deliveryBoyId: Id of the delivery boy 
+
+->userId: Id of user who placed order
+
+->orderId: Id of the order to fetch order details
+
+->deliveryTime: This is for status update.
+
+
+
+
+
+
+Working Flow
+ 
+
+Order retrieval
+Whenever a user goes to its myAccount section there, the user can find its current order details as well as its previous orders. On clicking on the myAccount section the order service api will be called to fetch its current order details as well as its previous order history. Previous orders are placed in the order history tab. On clicking on order history the user can see all its previous orders. All these orders are present in the form of a collapsible bag. On clicking on any order, the user can see the complete details of the order and collapsible will show only the important details.
+
+ 
+
+Ordering Module
+Users interact with the app to order food.
+
+On the home page, the app first asks for the location of the user and then fetches all the restaurants that can deliver to the user-selected location. Users can select the restaurant from the list or can search restaurants using the restaurant name, location or using food items.
+
+1. On clicking on any restaurant, the user can see the menu of the restaurant. There is also one menu icon that helps users to select the food according to category.
+
+2. There is an add button on every food item that allows the user to add items to its cart and users can add any number of items.
+
+3. On adding items to the cart the user proceeds to the checkout page where the user can see his order details and can also modify the order details from there.
+
+4. Users also can see his details and location selected on the checkout page. On the checkout page users can also apply discount coupons. After clicking on the make payment button the user is redirected to the payment screen.
+
+5. Payment screen has many payment mode options along with the pay on delivery method.
+
+6. Once the payment mode is selected, the user can place the order.
+
+7. Once the order is confirmed a delivery boy is assigned to the order and the user can also see the status of the order in the app.
+
+ 
+
+Menu Management module
+ 
+
+This module is present with the restaurant owners. So the restaurant are given with multiple features:
+
+1. They have to add items to the menu.
+
+2. They have to create a category for the food and can place items under it.
+
+3. Add price for the item.
+
+4. Add a photo of the food item which is optional.
+
+5. Time when the item will be available.
+
+
+
+
+
+
+ Contents
+We'll cover the following : 
+ 
+
+ 
+
+→ What is Dropbox?
+ 
+
+→ Problem Statement
+ 
+
+→ Low Level Design
+ 
+
+→ Architecture and Components
+
+
+
+
+
+Dropbox System Design
+ 
+Problem Statement 
+ 
+
+Design Dropbox.
+
+Or Design a file sharing and upload system. 
+
+Or Design High-Level System Architecture for Dropbox/GoogleDrive. 
+
+Or Explain the logic behind the core functionalities like Upload/Download in the Cloud app.
+
+
+
+
+
+  
+Low Level Design 
+ 
+Interviewer:
+ 
+
+1) Give a naive solution for the platform you are designing.
+
+2) Explain your initial thoughts on the system you are designing?
+
+3) Give a rough idea about dropbox as a platform for few hundred users and then scale it accordingly?
+
+ 
+
+ 
+Naive Solution 
+ 
+
+ 
+
+For designing a low level design we need a database schema to store user info and chunks details and file data. 
+
+Users(userId, name, email, password, createdAt)
+
+Devices(deviceId, userId(FK to users))
+
+Files(fileId, deviceId(FK to device table), fileType, fileName, fileType, createdAt, updatedAt)
+
+Chunks(chunkId, fileId(FK to files), url, createdAt, updatedAt)
+
+APIs need to used from client’s end-
+
+uploadFile(uploadId, fileName, fileId, userId)
+editFile(fileId, userId)
+deleteFile(fileId, userId)
+downloadFile(fileId, downloadId)
+All these APIs will be authorised with an access token that the user will generate upon login, so that we can authenticate and validate user access to files and if we need to block the user to perform any action which he’s not having access to.  
+
+
+
+
+
+
+Contents
+We'll cover the following : 
+ 
+
+ 
+
+→ What is Pastebin?
+ 
+
+→ Problem Statement
+ 
+
+→ Low Level Design
+ 
+→ Architecture and Components
+
+
+
+
+
+Low Level Design 
+ 
+Interviewer:
+ 
+
+1) Give a naive solution for the platform you are designing.
+
+2) Explain your initial thoughts on the system you are designing?
+
+3) Give a rough idea about pastebin as a platform for few hundred users and then scale it accordingly?
+
+ 
+
+Naive Solution 
+ 
+
+Database Schema
+
+users(userID, name, createdAT, metaData)
+
+paste(pasteID, content, URL, createdAt, expiryAt)
+
+Algorithm 
+
+create_paste(api_key, content, expiryAt)- this will return URL generated and success message that paste is stored successfully and in case of error it will return error.
+read_paste(URL)- returns corresponding original content and a error code in case of any failure
+
+
+
+
+
+
+
+ Architecture and Components 
+ 
+
+For creating the backend of Pastebin we can either use serverless architecture which will use AWS lambda functions for both APIs create paste and read paste or we can use microservice architecture which will require different services for creating paste and reading paste. 
+Let’s go with serverless architecture, we will use AWS Lambda functions, For each API hit it will call a new create paste function which will be running parallelly along with the other 100 functions.
+
+ 
+
+Storing Content 
+ 
+It will not be a good choice to keep all data in our database(SQL or NoSQL). Because storing 1000TBs of data in DB is not a good choice, so we can use a hybrid approach we can use an Object storage service like AWS S3 in which we can store the content in blob(binary large object) form and for the data less than 100KB we can store it in our Database only. AWS S3 bucket will store binary objects and will provide a URL to the content stored in blob form. 
+
+In the database integration layer, we need to perform consistent hashing in deciding which paste will go to which shard or we can simply use Range partitions based on unique pasteID
+
+ 
+
+Cache 
+ 
+We need to use any cache service, we can use Memcached service and need to cache the preview of the content while users will be performing reading operation on hitting URL, but we can’t store whole content on cache memory, we will store a preview content and then in background our service will return all data from AWS S3. 
+Caching is really required as our service is read-heavy.
+
+For eliminating Cache, we can use LRU here, URLs which aren’t used frequently we can replace with frequently used URLs. We need to synchronize cache data with original data in the background, so that consistency is always there in the content.
+
+ 
+
+Key Generating Service- 
+ 
+
+This service helps in generating random 10 letter keys beforehand and will store them in Redis DB, Now whenever we are storing a paste and we need a URL, we will look up in our Redis DB and see which key is not used, and after using the key we need to mark it used. This will eliminate duplicates and collisions. 
+
+Let’s say we want to save a 10-letter key with a combination of 64 characters in that case total permutations are 64^10 which is in billions.
+
+ 
+
+Expiry time URL- 
+ 
+
+We have a cleanup Sync service which will look up in our database if the current time is greater than the expiry time set while creating a paste, it will delete the entry from DB and also delete the file present in AWS S3(Object Store). 
+
+
+
+
+
+
+Contents
+We'll cover the following : 
+ 
+
+ 
+
+→ What is Elevator?
+ 
+
+→ Problem Statement
+ 
+
+→ Introduction
+ 
+
+→ Object Oriented Design
+
+
+
+
+
+
+Elevator System Design
+Introduction
+ 
+
+Elevator, also called lift, car that moves in a vertical shaft to carry passengers or freight between the levels of a multi story building. Most modern elevators are propelled by electric motors, with the aid of a counterweight, through a system of cables and sheaves (pulleys).
+
+ 
+
+Core Functionalities
+ 
+
+States of Elevator Car
+Transfer passengers between floors
+Opening and closing of doors when car is idle.
+Max. Total number of Floors -200
+Max total number of cars- 50
+Number of passengers and max load, max speed of car
+Minimize wait time of system and availability time for any passenger
+Maximize throughput
+Minimize cost and power consumption
+
+
+
+
+
+Elevator System Design
+ 
+Problem Statement 
+ 
+
+Design Elevator System.
+
+Or Object oriented system design for an elevator system. 
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+ 
